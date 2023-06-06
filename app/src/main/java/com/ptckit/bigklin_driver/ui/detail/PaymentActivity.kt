@@ -124,7 +124,6 @@ class PaymentActivity : AppCompatActivity() {
         detailViewModel.QRLink.observe(this){
             val intent = Intent(this, QRCodeActivity::class.java)
             intent.putExtra(IMAGE, it)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
 

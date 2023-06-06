@@ -47,7 +47,7 @@ class ListOrderAdapter (private val listData: List<Order>):
             val data = listData[position]
 
             tvOrderId.text = "Kode Order: " + data.order_id
-            tvUserId.text = "Name Pemesan: " + data.user_id
+            tvUserId.text = "Name Pemesan: " + data.nama_pelanggan
             tvDistance.text = "Harga Paket: " + data.harga_produk.toString() + " /Kg"
         }
 

@@ -30,6 +30,15 @@ data class Order(
     @field:SerializedName("harga_antar")
     val harga_antar: Int,
 
+    @field:SerializedName("nama_pelanggan")
+    val nama_pelanggan: String,
+
+    @field:SerializedName("alamat_pelanggan")
+    val alamat_pelanggan: String,
+
+    @field:SerializedName("nomor_hp_pelanggan")
+    val nomor_hp_pelanggan: String,
+
     @field:SerializedName("latitude")
     val latitude: Double,
 

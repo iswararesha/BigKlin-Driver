@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BigKlinDriver">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.detail.QRCodeActivity"
             android:exported="false" />
         <activity
@@ -26,7 +29,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBceL0sIZLlXvnYOVgd-td-FcFrQD2Chpw" />
+            android:value="AIzaSyCeENCc5Zj-5jfpr6O8kOwMPfGweBG4m6g" />
 
         <activity
             android:name=".ui.map.MapActivity"

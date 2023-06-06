@@ -3,12 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_detail.xml" value="0.25" />
+        <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_detail.xml" value="0.22" />
         <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_home.xml" value="0.1743659420289855" />
         <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_main.xml" value="0.17255434782608695" />
+        <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_map.xml" value="0.1743659420289855" />
         <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_payment.xml" value="0.5" />
+        <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_profile.xml" value="0.2" />
         <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_qrcode.xml" value="0.2" />
         <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/activity_register.xml" value="0.17255434782608695" />
         <entry key="..\:/Users/resha/AndroidStudioProjects/BigKlinDriver/app/src/main/res/layout/item_order.xml" value="0.25" />

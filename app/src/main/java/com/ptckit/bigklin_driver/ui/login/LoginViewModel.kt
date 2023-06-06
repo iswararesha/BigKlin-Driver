@@ -73,27 +73,6 @@ class LoginViewModel (private val pref: UserPreference) : ViewModel() {
                 if (response.isSuccessful) {
                     Log.e(ContentValues.TAG, response.body().toString())
 
-                    val username = response.body()?.data?.name
-                    val email = response.body()?.data?.email
-                    val address = response.body()?.data?.alamat
-                    val userId = response.body()?.data?.id.toString()
-                    val nomorHp = response.body()?.data?.nomorHp
-
-                    val userData = User(
-                        userId!!,
-                        username!!,
-                        email!!,
-                        address!!,
-                        nomorHp!!,
-                        token!!,
-                        true
-                    )
-
-                    viewModelScope.launch {
-                        pref.login(userData)
-                    }
-
-                    _message.value = "Berhasil Login"
                 } else {
                     val baseResponse = Gson().fromJson(response.errorBody()!!.charStream(),
                         BaseResponse::class.java)

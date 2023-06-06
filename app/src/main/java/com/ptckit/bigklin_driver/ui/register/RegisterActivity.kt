@@ -21,6 +21,7 @@ import com.ptckit.bigklin_driver.ui.ViewModelFactory
 import com.ptckit.bigklin_driver.ui.home.HomeActivity
 import com.ptckit.bigklin_driver.ui.login.LoginActivity
 import com.ptckit.bigklin_driver.databinding.ActivityRegisterBinding
+import com.ptckit.bigklin_driver.ui.main.MainActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class RegisterActivity : AppCompatActivity() {
@@ -130,7 +131,7 @@ class RegisterActivity : AppCompatActivity() {
 
         registerViewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
         }

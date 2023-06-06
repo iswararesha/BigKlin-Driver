@@ -16,5 +16,8 @@ data class UserData(
     val alamat: String,
 
     @field:SerializedName("nomor_hp")
-    val nomorHp: String
+    val nomorHp: String,
+
+    @field:SerializedName("status_member")
+    val status_member: Int
 )

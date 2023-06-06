@@ -9,6 +9,7 @@ import com.ptckit.bigklin_driver.ui.detail.DetailViewModel
 import com.ptckit.bigklin_driver.ui.home.HomeViewModel
 import com.ptckit.bigklin_driver.ui.main.MainViewModel
 import com.ptckit.bigklin_driver.ui.map.MapViewModel
+import com.ptckit.bigklin_driver.ui.profile.ProfileViewModel
 
 class ViewModelFactory (private val pref: UserPreference) : ViewModelProvider.NewInstanceFactory() {
 
@@ -32,6 +33,9 @@ class ViewModelFactory (private val pref: UserPreference) : ViewModelProvider.Ne
             }
             modelClass.isAssignableFrom(MapViewModel::class.java) -> {
                 MapViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(pref) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

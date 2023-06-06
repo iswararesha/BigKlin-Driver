@@ -2,12 +2,13 @@ package com.ptckit.bigklin_driver.ui.detail
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -19,9 +20,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.ptckit.bigklin_driver.R
-import com.ptckit.bigklin_driver.preference.UserPreference
 import com.ptckit.bigklin_driver.databinding.ActivityDetailBinding
 import com.ptckit.bigklin_driver.model.Order
+import com.ptckit.bigklin_driver.preference.UserPreference
 import com.ptckit.bigklin_driver.ui.ViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
@@ -71,16 +72,24 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback {
         detailViewModel = ViewModelProvider(this,
             ViewModelFactory(UserPreference.getInstance(dataStore))
         )[DetailViewModel::class.java]
+
+        binding.tvName.text = "Nama: " + order.nama_pelanggan
+        binding.tvAdress.text = "Alamat: " + order.alamat_pelanggan
+        binding.tvPhone.text = "Nomor HP: " + order.nomor_hp_pelanggan
     }
 
     private fun setupAction(){
         binding.btnPayment.setOnClickListener{
             val berat = binding.edtWeight.text.toString().toInt()
 
-            val intent = Intent(this, PaymentActivity::class.java)
-            intent.putExtra(PaymentActivity.PAKET_DETAIL, order)
-            intent.putExtra("berat", berat)
-            startActivity(intent)
+            if(binding.edtWeight.length() == 0){
+                binding.edtWeight.error = "Berat harus diisi!"
+            } else {
+                val intent = Intent(this, PaymentActivity::class.java)
+                intent.putExtra(PaymentActivity.PAKET_DETAIL, order)
+                intent.putExtra("berat", berat)
+                startActivity(intent)
+            }
         }
     }
 
@@ -96,5 +105,11 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback {
         val zoomLevel = 16.0f
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(address, zoomLevel))
         mMap.uiSettings.setAllGesturesEnabled(false)
+
+        mMap.setOnMapClickListener {
+            val intent = Intent(Intent.ACTION_VIEW,
+                Uri.parse("geo:0,0?q=${order.latitude},${order.longitude} (" + order.nama_pelanggan + ")"))
+            startActivity(intent)
+        }
     }
 }
