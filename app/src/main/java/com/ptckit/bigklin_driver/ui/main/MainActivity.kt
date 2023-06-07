@@ -70,7 +70,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.btnOrderList.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra(HomeActivity.KODE_ORDER, "001")
+            startActivity(intent)
         }
 
         binding.btnMap.setOnClickListener {
@@ -79,6 +81,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnProfile.setOnClickListener {
             startActivity(Intent(this, ProfileActivity::class.java))
+        }
+
+        binding.btnHistory.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra(HomeActivity.KODE_ORDER, "002")
+            startActivity(intent)
         }
     }
 

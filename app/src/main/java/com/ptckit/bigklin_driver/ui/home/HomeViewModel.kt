@@ -65,4 +65,33 @@ class HomeViewModel (private val pref: UserPreference) : ViewModel() {
 
         })
     }
+
+    fun getSuccessOrder(token: String){
+        _isLoading.value = true
+
+        client.getSuccessOrder(token).enqueue(object: Callback<OrderResponse>{
+            override fun onResponse(call: Call<OrderResponse>, response: Response<OrderResponse>) {
+                _isLoading.value = false
+
+                if (response.isSuccessful) {
+                    Log.e(ContentValues.TAG, response.body().toString())
+
+                    _message.value = response.body()?.message
+                    _orderData.value = response.body()?.data
+                } else {
+                    val baseResponse = Gson().fromJson(response.errorBody()!!.charStream(),
+                        BaseResponse::class.java)
+
+                    _message.value = baseResponse.message!!
+                    Log.e(ContentValues.TAG, "onFailure: ${baseResponse.message}")
+                }
+            }
+
+            override fun onFailure(call: Call<OrderResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(ContentValues.TAG, "onFailure: ${t.message.toString()}")
+            }
+
+        })
+    }
 }

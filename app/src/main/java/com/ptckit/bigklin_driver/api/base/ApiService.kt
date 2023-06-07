@@ -97,4 +97,9 @@ interface ApiService {
         @Path("order_id") order_id: String,
         @Field("nilai_timbang") nilai_timbang: Int
     ) : Call<QRCodeResponse>
+
+    @GET("kurir/get-success-order")
+    fun getSuccessOrder(
+        @Header("Authorization") token: String,
+    ) : Call<OrderResponse>
 }

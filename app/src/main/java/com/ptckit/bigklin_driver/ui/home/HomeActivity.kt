@@ -30,6 +30,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var order : String
 
     private var token = "User Token"
 
@@ -38,6 +39,7 @@ class HomeActivity : AppCompatActivity() {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION)
         private const val REQUEST_CODE_PERMISSIONS = 10
+        const val KODE_ORDER = "000"
     }
 
     override fun onRequestPermissionsResult(
@@ -62,11 +64,16 @@ class HomeActivity : AppCompatActivity() {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun getListOrder(): String {
+    private fun getListOrder(isSuccess: Boolean): String {
         homeViewModel.getToken().observe(this) { it ->
             if (it != "") {
                 token = it
-                homeViewModel.getListOrder(it)
+
+                if(isSuccess){
+                    homeViewModel.getSuccessOrder(it)
+                } else{
+                    homeViewModel.getListOrder(it)
+                }
             } else {
                 Toast.makeText(this@HomeActivity, "Login Not Valid", Toast.LENGTH_SHORT).show()
             }
@@ -87,6 +94,8 @@ class HomeActivity : AppCompatActivity() {
                 REQUEST_CODE_PERMISSIONS
             )
         }
+
+        order = intent.getStringExtra(KODE_ORDER) as String
 
         setupViewModel()
         setupView()
@@ -110,7 +119,11 @@ class HomeActivity : AppCompatActivity() {
             ViewModelFactory(UserPreference.getInstance(dataStore))
         )[HomeViewModel::class.java]
 
-        getListOrder()
+        if(order == "002"){
+            getListOrder(true)
+        } else if (order == "001"){
+            getListOrder(false)
+        }
 
         homeViewModel.isLoading.observe(this){
             showLoading(it)
