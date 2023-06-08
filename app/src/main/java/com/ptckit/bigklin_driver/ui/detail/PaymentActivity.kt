@@ -26,6 +26,7 @@ import com.ptckit.bigklin_driver.preference.UserPreference
 import com.ptckit.bigklin_driver.ui.ViewModelFactory
 import com.ptckit.bigklin_driver.ui.detail.QRCodeActivity.Companion.IMAGE
 import com.ptckit.bigklin_driver.ui.home.HomeActivity
+import com.ptckit.bigklin_driver.ui.main.MainActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 class PaymentActivity : AppCompatActivity() {
@@ -77,7 +78,7 @@ class PaymentActivity : AppCompatActivity() {
             } else {
                 detailViewModel.setPaymentCash(token, order.order_id, berat)
                 Toast.makeText(this@PaymentActivity, "Pembayaran berhasil", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()

@@ -31,12 +31,6 @@ class HomeViewModel (private val pref: UserPreference) : ViewModel() {
         return pref.getToken().asLiveData()
     }
 
-    fun logout() {
-        viewModelScope.launch {
-            pref.logout()
-        }
-    }
-
     fun getListOrder(token: String){
         _isLoading.value = true
 

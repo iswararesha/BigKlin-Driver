@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.*
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -132,18 +133,45 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.orderData.observe(this){
             setListOrder(it)
         }
-    }
-    private fun setListOrder(listOrder: List<Order>?) {
-        binding.rvListOrder.layoutManager = LinearLayoutManager(this)
 
-        val listOrderAdapter = listOrder?.let { ListOrderAdapter(it) }
-        binding.rvListOrder.adapter = listOrderAdapter
-
-        listOrderAdapter?.setOnItemClickCallback(object: ListOrderAdapter.OnItemClickCallback{
-            override fun onItemClicked(order: Order){
-                showSelectedOrder(order)
+        binding.swiperefresh.setOnRefreshListener {
+            if(order == "002"){
+                getListOrder(true)
+            } else if (order == "001"){
+                getListOrder(false)
             }
-        })
+            binding.swiperefresh.isRefreshing = false
+        }
+    }
+
+    private fun setListOrder(listOrder: List<Order>?) {
+        if(listOrder!!.isNotEmpty()){
+            binding.tvNoOrder.visibility = View.GONE
+            binding.rvListOrder.visibility = View.VISIBLE
+
+            binding.rvListOrder.layoutManager = LinearLayoutManager(this)
+
+            val listOrderAdapter = listOrder?.let { ListOrderAdapter(it) }
+            binding.rvListOrder.adapter = listOrderAdapter
+
+            listOrderAdapter?.notifyDataSetChanged()
+
+            if (order == "001"){
+                listOrderAdapter?.setOnItemClickCallback(object: ListOrderAdapter.OnItemClickCallback{
+                    override fun onItemClicked(order: Order){
+                        showSelectedOrder(order)
+                    }
+                })
+            } else {
+                listOrderAdapter?.setOnItemClickCallback(object: ListOrderAdapter.OnItemClickCallback{
+                    override fun onItemClicked(order: Order){
+                    }
+                })
+            }
+        } else {
+            binding.rvListOrder.visibility = View.GONE
+            binding.tvNoOrder.visibility = View.VISIBLE
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
