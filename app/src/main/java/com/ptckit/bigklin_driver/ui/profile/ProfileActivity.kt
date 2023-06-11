@@ -41,7 +41,8 @@ class ProfileActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.hide()
+
+        title = "Profil"
     }
 
     private fun setupViewModel() {

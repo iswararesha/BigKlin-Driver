@@ -95,13 +95,13 @@ class RegisterActivity : AppCompatActivity() {
                 email.error = "Isi Email dengan benar"
             }
             if(isPasswordError){
-                password.error = "Password harus diisi!"
+                password.error = "Kata sandi harus diisi!"
             }
             if(isRePasswordError){
-                repassword.error = "Konfirmasi Password harus diisi!"
+                repassword.error = "Konfirmasi kata sandi harus diisi!"
             }
             if(isPasswordMatch){
-                repassword.error = "Konfirmasi Password tidak sesuai"
+                repassword.error = "Konfirmasi kata sandi tidak sesuai"
             }
             if(isAddressError){
                 address.error = "Alamat harus diisi!"

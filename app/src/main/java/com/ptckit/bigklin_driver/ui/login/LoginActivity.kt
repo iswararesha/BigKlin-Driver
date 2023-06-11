@@ -105,7 +105,7 @@ class LoginActivity : AppCompatActivity() {
                 email.error = "Isi Email dengan benar"
             }
             if(isPasswordError){
-                password.error = "Password harus diisi!"
+                password.error = "Kata sandi harus diisi!"
             }
 
             return false

@@ -112,7 +112,6 @@ class HomeActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.hide()
     }
 
     private fun setupViewModel() {
@@ -121,8 +120,10 @@ class HomeActivity : AppCompatActivity() {
         )[HomeViewModel::class.java]
 
         if(order == "002"){
+            title = "Riwayat Pemesanan"
             getListOrder(true)
         } else if (order == "001"){
+            title = "List Pemesanan"
             getListOrder(false)
         }
 
