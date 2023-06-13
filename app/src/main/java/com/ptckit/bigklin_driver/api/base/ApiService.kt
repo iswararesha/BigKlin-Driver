@@ -50,31 +50,9 @@ interface ApiService {
         @Field("longitude") longitude: Double
     ) : Call<BaseResponse>
 
-    @GET("user")
-    fun getUserOrder(
-        @Header("Authorization") token: String,
-    ) : Call<UserOrderResponse>
-
     @GET("kurir/get-all-order")
     fun getAllOrder(
         @Header("Authorization") token: String,
-    ) : Call<OrderResponse>
-
-    @GET("get-activity-log/{user_id}")
-    fun getActivityLog(
-        @Field("id") id: Number,
-    ) : Call<ActivityLogResponse>
-
-    @GET("get-snap-token/{kode_produk}")
-    fun getSnapToken(
-        @Header("Authorization") token: String,
-        @Path("kode_produk") kode_getproduk: String,
-    ) : Call<SnapTokenResponse>
-
-    @GET("kurir/get-order/{order_id}")
-    fun getOrderByID(
-        @Header("Authorization") token: String,
-        @Path("order_id") order_id: String,
     ) : Call<OrderResponse>
 
     @GET("user")

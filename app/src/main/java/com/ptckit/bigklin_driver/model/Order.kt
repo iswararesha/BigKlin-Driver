@@ -3,6 +3,7 @@ package com.ptckit.bigklin_driver.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import java.util.*
 
 @Parcelize
 data class Order(
@@ -43,5 +44,11 @@ data class Order(
     val latitude: Double,
 
     @field:SerializedName("longitude")
-    val longitude: Double
+    val longitude: Double,
+
+    @field:SerializedName("harga_total")
+    val harga_total: Int? = 0,
+
+    @field:SerializedName("updated_at")
+    val updated_at: Date,
 ): Parcelable

@@ -132,7 +132,11 @@ class HomeActivity : AppCompatActivity() {
         }
 
         homeViewModel.orderData.observe(this){
-            setListOrder(it)
+            if(order == "002"){
+                setSuccessOrder(it)
+            } else if (order == "001"){
+                setListOrder(it)
+            }
         }
 
         binding.swiperefresh.setOnRefreshListener {
@@ -157,18 +161,28 @@ class HomeActivity : AppCompatActivity() {
 
             listOrderAdapter?.notifyDataSetChanged()
 
-            if (order == "001"){
-                listOrderAdapter?.setOnItemClickCallback(object: ListOrderAdapter.OnItemClickCallback{
-                    override fun onItemClicked(order: Order){
-                        showSelectedOrder(order)
-                    }
-                })
-            } else {
-                listOrderAdapter?.setOnItemClickCallback(object: ListOrderAdapter.OnItemClickCallback{
-                    override fun onItemClicked(order: Order){
-                    }
-                })
-            }
+            listOrderAdapter?.setOnItemClickCallback(object: ListOrderAdapter.OnItemClickCallback{
+                override fun onItemClicked(order: Order){
+                    showSelectedOrder(order)
+                }
+            })
+        } else {
+            binding.rvListOrder.visibility = View.GONE
+            binding.tvNoOrder.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setSuccessOrder(listOrder: List<Order>?) {
+        if(listOrder!!.isNotEmpty()){
+            binding.tvNoOrder.visibility = View.GONE
+            binding.rvListOrder.visibility = View.VISIBLE
+
+            binding.rvListOrder.layoutManager = LinearLayoutManager(this)
+
+            val listSuccessAdapter = listOrder?.let { ListSuccessAdapter(it) }
+            binding.rvListOrder.adapter = listSuccessAdapter
+
+            listSuccessAdapter?.notifyDataSetChanged()
         } else {
             binding.rvListOrder.visibility = View.GONE
             binding.tvNoOrder.visibility = View.VISIBLE
