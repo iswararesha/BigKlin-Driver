@@ -202,10 +202,4 @@ class HomeActivity : AppCompatActivity() {
         intent.putExtra(DetailActivity.PAKET_DETAIL, order)
         startActivity(intent)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.home_menu, menu)
-        return true
-    }
 }
