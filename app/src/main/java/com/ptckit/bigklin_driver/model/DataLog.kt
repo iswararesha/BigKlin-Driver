@@ -9,8 +9,4 @@ data class DataLog (
 
     @field:SerializedName("description")
     val description: String,
-
-    @field:SerializedName("est")
-    val est: String
-
 )
